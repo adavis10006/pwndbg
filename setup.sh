@@ -19,14 +19,14 @@ PYTHON="${PYTHON}${PYVER}"
 SITE_PACKAGES=$(gdb -batch -q --nx -ex 'pi import site; print(site.getsitepackages()[0])')
 
 # Install Python dependencies
-sudo ${PYTHON} -m pip install --target ${SITE_PACKAGES} -Ur requirements.txt
+sudo -H ${PYTHON} -m pip install --target ${SITE_PACKAGES} -Ur requirements.txt
 
 # Install both Unicorn and Capstone
 for directory in capstone unicorn; do
     pushd $directory
     sudo UNICORN_QEMU_FLAGS="--python=$(which python2)" ./make.sh install
     cd bindings/python
-    sudo ${PYTHON} -m pip install --target ${SITE_PACKAGES} .
+    sudo -H ${PYTHON} -m pip install --target ${SITE_PACKAGES} .
     popd
 done
 

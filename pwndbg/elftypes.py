@@ -543,7 +543,7 @@ assert ctypes.sizeof(elf_prstatus_i386) == 0x90
 class elf_prstatus_amd64(ctypes.Structure):
     _fields_ = generate_prstatus_common(64, user_regs_struct_amd64)
 
-assert ctypes.sizeof(elf_prstatus_amd64) == 0x150
+assert ctypes.sizeof(elf_prstatus_amd64) == 0x14c
 
 class Elf32_auxv_t(ctypes.Structure):
     _fields_ = [('a_type', ctypes.c_uint32),
